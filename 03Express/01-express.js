@@ -45,8 +45,8 @@ app.use((req,res) => {
    // llamadas a las rutas 
    app.use('/',require('./router/rutas'))
    app.use('/pokemon',require('./router/pokemon'))
-
-
+   app.use('/entrenador',require('./router/entrenador'))
+//entrenador en ruta
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
