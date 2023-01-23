@@ -9,6 +9,6 @@ const entrenadorSchema = new Schema({
 })
 
 //Creamos el modelo
-const Entrenador = mongoose.model('dbpokemon', entrenadorSchema, "entrenador");
+const Entrenador = mongoose.model('dbentrenador', entrenadorSchema, "entrenador");
 
 module.exports = Entrenador;
