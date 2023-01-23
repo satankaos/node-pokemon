@@ -13,12 +13,13 @@ app.set('views',__dirname+'/views')
 
 //Conexión a base de datos
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true)
 //Variables que tendremos siempre:
 //Lo correcto será declararlas EN VARIABLES DE ENTORNO
 //para que nadie vea directamente nuestras credenciales
-/*const user = 'cursonode';
+const user = 'cursonode';
 const password = 'wDT3pcDGPPmRzAoo';
-const dbname = 'dbpokemon';*/
+const dbname = 'dbpokemon';
 
 const uri = `mongodb+srv://${process.env.BD_USER}:${process.env.BD_PASSWORD}@cluster0.fpooui4.mongodb.net/${process.env.BD_NAME}?retryWrites=true&w=majority`; //URL de conexión, que completaremos luego
 mongoose.connect(uri,
