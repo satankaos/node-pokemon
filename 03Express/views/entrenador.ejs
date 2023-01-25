@@ -9,9 +9,11 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acción</th>
+                    <th scope="col">Bio</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">lista Pokemon</th>
+                    <th scope="col">lista objetos</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +25,8 @@
                   <td><%= entrenador.nombre %></td>
                   <td><%= entrenador.Bio %></td>
                   <td><%= entrenador.Ciudad %></td>
-                  <td><%= entrenador.Lista_Pokemon %></td>
+                  <td><%= entrenador.Lista_Pokemon %></td> 
+                  <td><%= entrenador.Lista_objetos %></td> 
                   <td>
                     <a class="btn btn-warning btn-sm" href="/entrenador/<%= entrenador.id %>">Editar/Eliminar</a>
                     </td>

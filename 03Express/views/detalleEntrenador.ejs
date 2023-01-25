@@ -18,6 +18,8 @@
                             
                                 <input type="text" value="<%= entrenador.Lista_Pokemon  %>" class="form-control my-2"
                                     name="Lista_Pokemon" id="descripcionInput">
+                                <input type="text" value="<%= entrenador.Lista_objetos  %>" class="form-control my-2"
+                                    name="Lista_objetos" id="descripcionInput">
                                 <button class="btn btn-warning btn-sm" type="submit">
                                     Editar
                                 </button>
@@ -51,6 +53,7 @@
                     console.log(error)
                 }
             })
+            
             const formEditar = document.querySelector('#editar');
             formEditar.addEventListener('submit', async (e) => {
                 e.preventDefault()
@@ -58,13 +61,14 @@
                 const Bio = formEditar.elements['Bio'].value
                 const Ciudad = formEditar.elements['Ciudad'].value
                 const Lista_Pokemon = formEditar.elements['Lista_Pokemon'].value
+                const Lista_objetos = formEditar.elements['Lista_objetos'].value
                 const id = formEditar.dataset.id
                 const data = await fetch(`/entrenador/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ nombre, Bio, Ciudad,Lista_Pokemon })
+                    body: JSON.stringify({ nombre, Bio, Ciudad, Lista_Pokemon, Lista_objetos })
                 })
                 const res = await data.json()
                 if (res.estado) {
