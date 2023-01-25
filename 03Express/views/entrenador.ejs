@@ -2,7 +2,7 @@
 
   <div class="container">
     <h1>CRUD Mongo</h1>
-   <a class="btn btn-success btn-block my-4" href="/entrenador/crear">Crear un nuevo entrenador</a>
+   <a class="btn btn-success btn-block my-4" href="/entrenador/crearEntrenador">Crear un nuevo entrenador</a>
 
         <table class="table">
             <thead class="thead-dark">
@@ -15,9 +15,9 @@
                 </tr>
             </thead>
             <tbody>
-      <% if (arrayentrenador.length> 0) { %>
+      <% if (arrayEntrenador.length> 0) { %>
           <!--Haremos el foreach para recorrer el array-->
-          <% arrayentrenador.forEach(entrenador => { %>
+          <% arrayEntrenador.forEach(entrenador => { %>
               <tr>
                   <th scope="row"><%= entrenador.id %></th>
                   <td><%= entrenador.nombre %></td>

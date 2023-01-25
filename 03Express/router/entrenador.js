@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
         console.error(error)
     }
 })
-router.get('/crear', (req, res) => {
-    res.render('crear'); //nueva vista que llamaremos Crear
+router.get('/crearEntrenador', (req, res) => {
+    res.render('crearEnrenador'); //nueva vista que llamaremos Crear
  })
  
 router.post('/', async (req, res) => {
@@ -40,13 +40,13 @@ router.get('/:id', async(req, res) => { //El id vendrá por el GET (barra de dir
 							//Esta variable “Entrenador” está definida arriba con el “require”
         //Buscamos con Mongoose un único documento que coincida con el id indicado
         console.log(entrenadorDB) //Para probarlo por consola
-        res.render('detalle', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
+        res.render('detalleEntrenador', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
             entrenador: entrenadorDB,
             error: false
         })
     } catch (error) { //Si el id indicado no se encuentra
         console.log('Se ha producido un error', error)
-        res.render('detalle', { //Mostraremos el error en la vista "detalle"
+        res.render('detalleEntrenador', { //Mostraremos el error en la vista "detalle"
             error: true,
             mensaje: 'Entrenador no encontrado!'
         })
@@ -65,12 +65,12 @@ router.delete('/:id', async (req, res) => {
         if (!entrenadorDB) {
             res.json({ 
                 estado: false,
-                mensaje: 'No se puede eliminar el Pokémon.'
+                mensaje: 'No se puede eliminar el Entrenador.'
             })
         } else {
             res.json({
                 estado: true,
-                mensaje: 'Pokémon eliminado.'
+                mensaje: 'Entrenador eliminado.'
             })
         } 
     } catch (error) {
@@ -89,13 +89,13 @@ router.put('/:id', async (req, res) => {
         console.log(entrenadorDB)
         res.json({
             estado: true,
-            mensaje: 'Pokémon editado'
+            mensaje: 'Entrenador editado'
         })
     } catch (error) {
         console.log(error)
         res.json({
             estado: false,
-            mensaje: 'Problema al editar el Pokémon'
+            mensaje: 'Problema al editar el Entrenador'
         })
     }
 })
