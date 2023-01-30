@@ -14,12 +14,11 @@ app.set('views',__dirname+'/views')
 //Conexión a base de datos
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true)
-//Variables que tendremos siempre:
-//Lo correcto será declararlas EN VARIABLES DE ENTORNO
-//para que nadie vea directamente nuestras credenciales
-const user = 'cursonode';
+/*const user = 'cursonode';
 const password = 'wDT3pcDGPPmRzAoo';
 const dbname = 'dbpokemon';
+se ha de crear un archivo env para cojer los datos 
+*/
 
 const uri = `mongodb+srv://${process.env.BD_USER}:${process.env.BD_PASSWORD}@cluster0.fpooui4.mongodb.net/${process.env.BD_NAME}?retryWrites=true&w=majority`; //URL de conexión, que completaremos luego
 mongoose.connect(uri,
@@ -31,22 +30,13 @@ mongoose.connect(uri,
 
 //ruta middel 
 app.use(express.static(__dirname+'/public'));
-/*
-app.get('/', (req, res) => {
-    res.render("index",{titulo:"mi titulo dinamico"})
-})
 
-app.use((req,res) => {
-    res.status(404).render("404",{
-        titulo:"Error 404",
-        descriptions: "no te found"
-    });
-   })
-  */ 
+
    // llamadas a las rutas 
    app.use('/',require('./router/rutas'))
    app.use('/pokemon',require('./router/pokemon'))
    app.use('/entrenador',require('./router/entrenador'))
+   app.use('/medallas',require('./router/medallas'))
 //entrenador en ruta
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

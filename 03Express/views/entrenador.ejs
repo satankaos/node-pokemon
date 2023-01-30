@@ -1,7 +1,7 @@
 <%- include("template/cabecera.ejs", {tituloWeb:'Panel de Administración'}) %>
 
   <div class="container">
-    <h1>CRUD Mongo</h1>
+    <h1>Entrenador</h1>
    <a class="btn btn-success btn-block my-4" href="/entrenador/crearEntrenador">Crear un nuevo entrenador</a>
 
         <table class="table">
@@ -29,6 +29,9 @@
                   <td><%= entrenador.Lista_objetos %></td> 
                   <td>
                     <a class="btn btn-warning btn-sm" href="/entrenador/<%= entrenador.id %>">Editar/Eliminar</a>
+                    </td>
+                  <td>
+                
                     </td>
               </tr>
           <% }) %>

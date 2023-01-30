@@ -5,7 +5,6 @@ const entrenadorSchema = new Schema({
     nombre: String,
     Bio: String,
     Ciudad: String,
-    Lista_Pokemon: String,
     Lista_objetos:String
 })
 

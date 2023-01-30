@@ -1,53 +1,54 @@
 const express = require('express');
 const router = express.Router();
-const Pokemon = require('../models/pokemon');
+const Medallas = require('../models/medallas');
 
 router.get('/', async (req, res) => {
     try {
-        //Le pondremos arrayPokemonDB para diferenciar
+        //Le pondremos arrayMedallasDB para diferenciar
         //los datos que vienen de la base de datos
-        //con respecto al arrayPokemon que tenemos EN LA VISTA
-        const arrayPokemonDB = await Pokemon.find();
-        res.render("pokemon", { 
-            arrayPokemon: arrayPokemonDB
+        //con respecto al arrayMedallas que tenemos EN LA VISTA
+        const arrayMedallasDB = await Medallas.find();
+       
+        res.render("medallas", { 
+            arrayMedallas: arrayMedallasDB
         })
     } catch (error) {
         console.error(error)
     }
 })
-router.get('/crear', (req, res) => {
-    res.render('crear'); //nueva vista que llamaremos Crear
+router.get('/crearMedallas', (req, res) => {
+    res.render('crearMedallas'); //nueva vista que llamaremos Crear
  })
  
 router.post('/', async (req, res) => {
     const body = req.body //Gracias al body parser, de esta forma
     //podremos recuperar todo lo que viene del body
-   
+    
     try {
-        const pokemonDB = new Pokemon(body) //Creamos un nuevo Pokemon, gracias al modelo
-        await pokemonDB.save() //Lo guardamos con .save(), gracias a Mongoose
-        res.redirect('/pokemon') //Volvemos al listado
+        const medallasDB = new Medallas(body) //Creamos un nuevo Medallas, gracias al modelo
+        await medallasDB.save() //Lo guardamos con .save(), gracias a Mongoose
+        res.redirect('/medallas') //Volvemos al listado
     } catch (error) {
         console.err('error', error)
     }
 })
 router.get('/:id', async(req, res) => { //El id vendrá por el GET (barra de direcciones)
-    const id = req.params.id //Recordemos que en la plantilla "pokemon.ejs" le pusimos
-    //a este campo pokemon.id, por eso lo llamados con params.id
+    const id = req.params.id //Recordemos que en la plantilla "medallas.ejs" le pusimos
+    //a este campo medallas.id, por eso lo llamados con params.id
     try {
-        const pokemonDB = await Pokemon.findOne({ _id: id }) //_id porque así lo indica Mongo
-							//Esta variable “Pokemon” está definida arriba con el “require”
+        const medallasDB = await Medallas.findOne({ _id: id }) //_id porque así lo indica Mongo
+							//Esta variable “Medallas” está definida arriba con el “require”
         //Buscamos con Mongoose un único documento que coincida con el id indicado
-       
-        res.render('detalle', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
-            pokemon: pokemonDB,
+      
+        res.render('detalleMedallas', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
+            medallas: medallasDB,
             error: false
         })
     } catch (error) { //Si el id indicado no se encuentra
         console.err('Se ha producido un error', error)
-        res.render('detalle', { //Mostraremos el error en la vista "detalle"
+        res.render('detalleMedallas', { //Mostraremos el error en la vista "detalle"
             error: true,
-            mensaje: 'Pokemon no encontrado!'
+            mensaje: 'Medallas no encontrado!'
         })
     }
 })
@@ -57,19 +58,19 @@ router.delete('/:id', async (req, res) => {
     try {
         //En la documentación de Mongoose podremos encontrar la
         //siguiente función para eliminar
-        const pokemonDB = await Pokemon.findByIdAndDelete({ _id: id });
-    
+        const medallasDB = await Medallas.findByIdAndDelete({ _id: id });
+     
         // https://stackoverflow.com/questions/27202075/expressjs-res-redirect-not-working-as-expected
-        // res.redirect('/pokemon') //Esto daría un error, tal y como podemos ver arriba
-        if (!pokemonDB) {
+        // res.redirect('/medallas') //Esto daría un error, tal y como podemos ver arriba
+        if (!medallasDB) {
             res.json({ 
                 estado: false,
-                mensaje: 'No se puede eliminar el Pokémon.'
+                mensaje: 'No se puede eliminar el Medallas.'
             })
         } else {
             res.json({
                 estado: true,
-                mensaje: 'Pokémon eliminado.'
+                mensaje: 'Medallas eliminado.'
             })
         } 
     } catch (error) {
@@ -79,21 +80,21 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    
+   
     try {
-        const pokemonDB = await Pokemon.findByIdAndUpdate(
+        const medallasDB = await Medallas.findByIdAndUpdate(
             id, body, { useFindAndModify: false }
         )
-      
+        
         res.json({
             estado: true,
-            mensaje: 'Pokémon editado'
+            mensaje: 'Medallas editado'
         })
     } catch (error) {
         console.err(error)
         res.json({
             estado: false,
-            mensaje: 'Problema al editar el Pokémon'
+            mensaje: 'Problema al editar el Medallas'
         })
     }
 })
